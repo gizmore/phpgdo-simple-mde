@@ -1,0 +1,8 @@
+# Yarn, NPM and Bower
+/yarn.lock
+/node_modules/
+/bower_components/
+
+# Composer
+/vendor/
+/composer.lock
