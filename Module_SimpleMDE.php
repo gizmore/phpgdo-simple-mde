@@ -3,12 +3,14 @@ namespace GDO\SimpleMDE;
 
 use GDO\Core\GDO_Module;
 use GDO\Javascript\Module_Javascript;
+use GDO\UI\GDT_Message;
+use GDO\HTML\Decoder;
 
 /**
  * SimpleMDE integration module.
  * 
  * @author gizmore
- * @version 7.0.1
+ * @version 7.0.2
  * @since 7.0.1
  */
 final class Module_SimpleMDE extends GDO_Module
@@ -18,6 +20,36 @@ final class Module_SimpleMDE extends GDO_Module
 	##############
 	### Module ###
 	##############
+	public function getDependencies(): array
+	{
+		return [
+			'HTML',
+		];
+	}
+	
+	public function getFriendencies(): array
+	{
+		return [
+			'Javascript',
+			'JQuery',
+		];
+	}
+	
+	public function getLicenseFilenames(): array
+	{
+		return [
+			'MIT.LICENSE',
+		];
+	}
+	
+	# ###########
+	# ## Init ###
+	# ###########
+	public function onModuleInit(): void
+	{
+		GDT_Message::addDecoder('SimpleMDE', [Decoder::class, 'purify']);
+	}
+	
 	public function onLoadLanguage() : void
 	{
 		$this->loadLanguage('lang/simplemde');
@@ -38,27 +70,6 @@ final class Module_SimpleMDE extends GDO_Module
 		}
 		$this->addJS('js/gdo-simplemde.js');
 		$this->addCSS('css/gdo-simplemde.css');
-	}
-	
-	public function getDependencies() : array
-	{
-		return [
-			'Core',
-		];
-	}
-	
-	public function getFriendencies() : array
-	{
-		return [
-			'Javascript', 'JQuery',
-		];
-	}
-	
-	public function getLicenseFilenames() : array
-	{
-		return [
-			'MIT.LICENSE',
-		];
 	}
 	
 	##############
