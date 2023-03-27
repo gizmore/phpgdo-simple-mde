@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 window.GDO.SimpleMDE = {
 
@@ -36,9 +36,9 @@ editors.forEach(function(ele, num, parent) {
 			underscoresBreakWords: true,
 		},
 		placeholder: "Type here...",
-		previewRender: function(plainText) {
-			return customMarkdownParser(plainText); // Returns HTML from a custom parser
-		},
+		// previewRender: function(plainText) {
+		// 	return customMarkdownParser(plainText); // Returns HTML from a custom parser
+		// },
 		previewRender: function(plainText, preview) { // Async method
 			setTimeout(function() {
 				preview.innerHTML = customMarkdownParser(plainText);
@@ -56,8 +56,8 @@ editors.forEach(function(ele, num, parent) {
 		},
 		showIcons: ["code", "table"],
 		spellChecker: false,
-		status: false,
-		status: ["autosave", "lines", "words", "cursor"], // Optional usage
+		// status: false,
+		// status: ["autosave", "lines", "words", "cursor"], // Optional usage
 		status: ["autosave", "lines", "words", "cursor", {
 			className: "keystrokes",
 			defaultValue: function(el) {
